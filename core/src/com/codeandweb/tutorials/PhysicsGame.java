@@ -35,6 +35,8 @@ public class PhysicsGame extends Game {
     static final int POSITION_ITERATIONS = 2;
     static final float SCALE = 0.05f;
 
+    static TextureAtlas textureAtlasButtons;
+
     private BitmapFont font;
     private Texture texture;
     private Sprite sprite;
@@ -56,19 +58,10 @@ public class PhysicsGame extends Game {
 
 	@Override
 	public void create () {
-	    Box2D.init();
-	    debugRenderer = new Box2DDebugRenderer();
+	    MainMenuScreen mainMenuScreen = new MainMenuScreen(this);
+	    
+        setScreen(mainMenuScreen);
 
-	    world = new World(new Vector2(0, -120), true);
-	    physicsBodies = new PhysicsShapeCache("physics.xml");
-	    camera = new OrthographicCamera();
-	    viewport = new ExtendViewport(50, 50, camera);
-		batch = new SpriteBatch();
-		font = new BitmapFont();
-		font.getData().setScale(.5f);
-		font.setColor(Color.RED);
-
-		textureAtlas = new TextureAtlas("sprites.txt");
 	}
 
 	private void stepWorld() {
@@ -128,42 +121,7 @@ public class PhysicsGame extends Game {
 		debugRenderer.dispose();
 	}
 
-	/*************************************
-	 * Helper Method for drawing sprites *
-	 *************************************/
-	private void drawSprite(String name, float x, float y, float degrees) {
-	    Sprite sprite = sprites.get(name);
 
-	    sprite.setPosition(x, y);
-	    sprite.setRotation(degrees);
-	    sprite.setOrigin(0f, 0f);
-
-	    sprite.draw(batch);
-    }
-
-    private void addSprites() {
-        Array<TextureAtlas.AtlasRegion> regions = textureAtlas.getRegions();
-
-        for (TextureAtlas.AtlasRegion region: regions) {
-            Sprite sprite = textureAtlas.createSprite(region.name);
-
-            float width = sprite.getWidth() * SCALE;
-            float height = sprite.getHeight() * SCALE;
-
-            sprite.setSize(width, height);
-            sprite.setOrigin(0,0);
-
-            sprites.put(region.name, sprite);
-        }
-
-    }
-
-    private Body createBody(String name, float x, float y, float rotation) {
-	    Body body = physicsBodies.createBody(name, world, SCALE, SCALE);
-	    body.setTransform(x, y, rotation);
-
-	    return body;
-    }
 
     private void createGround() {
 	    if (ground != null) world.destroyBody(ground);
