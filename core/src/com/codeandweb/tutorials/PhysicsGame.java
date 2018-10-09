@@ -1,6 +1,7 @@
 package com.codeandweb.tutorials;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
@@ -27,7 +28,7 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Vector;
 
-public class PhysicsGame extends ApplicationAdapter {
+public class PhysicsGame extends Game {
 
     static final float STEP_TIME = 1f / 60f;
     static final int VELOCITY_ITERATIONS = 6;
