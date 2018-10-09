@@ -1,5 +1,5 @@
 sprites.png
-size: 512, 128
+size: 256, 317
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -19,15 +19,22 @@ cherries
   index: -1
 crate
   rotate: false
-  xy: 256, 0
+  xy: 0, 128
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 orange
   rotate: false
-  xy: 384, 0
+  xy: 128, 128
   size: 128, 128
   orig: 128, 128
+  offset: 0, 0
+  index: -1
+playButton
+  rotate: false
+  xy: 0, 256
+  size: 252, 61
+  orig: 252, 61
   offset: 0, 0
   index: -1
